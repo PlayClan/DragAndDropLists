@@ -188,7 +188,7 @@ class _DragAndDropItemWrapper extends State<DragAndDropItemWrapper>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: widget.parameters!.verticalAlignment,
           children: <Widget>[
-            AnimatedSize(
+            AnimatedContainer(
               duration: Duration(
                   milliseconds: widget.parameters!.itemSizeAnimationDuration),
               alignment: Alignment.topLeft,
