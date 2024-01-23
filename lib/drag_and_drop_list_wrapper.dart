@@ -103,12 +103,10 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
             cursor: SystemMouseCursors.grab,
             child: dragAndDropListContents
           ),
-          feedback: IgnorePointer(
-            child: MouseRegion(
-              cursor: SystemMouseCursors.grabbing,
-              child: IgnorePointer(
-                child: buildFeedbackWithoutHandle(context, dragAndDropListFeedback)
-              ),
+          feedback: MouseRegion(
+            cursor: SystemMouseCursors.grabbing,
+            child: IgnorePointer(
+              child: buildFeedbackWithoutHandle(context, dragAndDropListFeedback)
             ),
           ),
           childWhenDragging: MouseRegion(

@@ -125,22 +125,20 @@ class _DragAndDropItemWrapper extends State<DragAndDropItemWrapper>
             child: MouseRegion(
               cursor: SystemMouseCursors.grab,
               child: widget.child.child),
-            feedback: IgnorePointer(
-              child: MouseRegion(
-                cursor: SystemMouseCursors.grabbing,
-                child: IgnorePointer(
-                  child: Container(
-                    width:
-                        widget.parameters!.itemDraggingWidth ?? _containerSize.width,
-                    child: Material(
-                      child: Container(
-                        child: Directionality(
-                            textDirection: Directionality.of(context),
-                            child: widget.child.feedbackWidget ?? widget.child.child),
-                        decoration: widget.parameters!.itemDecorationWhileDragging,
-                      ),
-                      color: Colors.transparent,
+            feedback: MouseRegion(
+              cursor: SystemMouseCursors.grabbing,
+              child: IgnorePointer(
+                child: Container(
+                  width:
+                      widget.parameters!.itemDraggingWidth ?? _containerSize.width,
+                  child: Material(
+                    child: Container(
+                      child: Directionality(
+                          textDirection: Directionality.of(context),
+                          child: widget.child.feedbackWidget ?? widget.child.child),
+                      decoration: widget.parameters!.itemDecorationWhileDragging,
                     ),
+                    color: Colors.transparent,
                   ),
                 ),
               ),
