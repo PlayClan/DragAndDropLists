@@ -115,27 +115,39 @@ class _DragAndDropItemWrapper extends State<DragAndDropItemWrapper>
         draggable = MeasureSize(
           onSizeChange: _setContainerSize,
           child: LongPressDraggable<DragAndDropItem>(
+            // ignoringFeedbackPointer: false,
             delay: const Duration(milliseconds: 200),
             data: widget.child,
             axis: widget.parameters!.axis == Axis.vertical &&
                     widget.parameters!.constrainDraggingAxis
                 ? Axis.vertical
                 : null,
-            child: widget.child.child,
-            feedback: Container(
-              width:
-                  widget.parameters!.itemDraggingWidth ?? _containerSize.width,
-              child: Material(
-                child: Container(
-                  child: Directionality(
-                      textDirection: Directionality.of(context),
-                      child: widget.child.feedbackWidget ?? widget.child.child),
-                  decoration: widget.parameters!.itemDecorationWhileDragging,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.grab,
+              child: widget.child.child),
+            feedback: IgnorePointer(
+              child: MouseRegion(
+                cursor: SystemMouseCursors.grabbing,
+                child: IgnorePointer(
+                  child: Container(
+                    width:
+                        widget.parameters!.itemDraggingWidth ?? _containerSize.width,
+                    child: Material(
+                      child: Container(
+                        child: Directionality(
+                            textDirection: Directionality.of(context),
+                            child: widget.child.feedbackWidget ?? widget.child.child),
+                        decoration: widget.parameters!.itemDecorationWhileDragging,
+                      ),
+                      color: Colors.transparent,
+                    ),
+                  ),
                 ),
-                color: Colors.transparent,
               ),
             ),
-            childWhenDragging: Container(),
+            childWhenDragging: MouseRegion(
+              cursor: SystemMouseCursors.grabbing,
+              child: Container()),
             onDragStarted: () => _setDragging(true),
             onDragCompleted: () => _setDragging(false),
             onDraggableCanceled: (_, __) => _setDragging(false),

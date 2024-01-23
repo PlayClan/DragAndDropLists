@@ -96,12 +96,25 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
       } else if (widget.parameters.dragOnLongPress) {
         draggable = LongPressDraggable<DragAndDropListInterface>(
           delay: const Duration(milliseconds: 200),
+          // ignoringFeedbackPointer: false,
           data: widget.dragAndDropList,
           axis: draggableAxis(),
-          child: dragAndDropListContents,
-          feedback:
-              buildFeedbackWithoutHandle(context, dragAndDropListFeedback),
-          childWhenDragging: Container(),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.grab,
+            child: dragAndDropListContents
+          ),
+          feedback: IgnorePointer(
+            child: MouseRegion(
+              cursor: SystemMouseCursors.grabbing,
+              child: IgnorePointer(
+                child: buildFeedbackWithoutHandle(context, dragAndDropListFeedback)
+              ),
+            ),
+          ),
+          childWhenDragging: MouseRegion(
+            cursor: SystemMouseCursors.grabbing,
+            child: Container()
+          ),
           onDragStarted: () => _setDragging(true),
           onDragCompleted: () => _setDragging(false),
           onDraggableCanceled: (_, __) => _setDragging(false),
