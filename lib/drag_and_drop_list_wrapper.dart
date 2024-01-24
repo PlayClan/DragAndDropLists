@@ -1,8 +1,10 @@
 import 'package:drag_and_drop_lists/drag_and_drop_builder_parameters.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
 import 'package:drag_and_drop_lists/drag_handle.dart';
+import 'package:drag_and_drop_lists/drag_target_custom.dart' as dtc;
 import 'package:drag_and_drop_lists/measure_size.dart';
 import 'package:flutter/material.dart';
+
 
 class DragAndDropListWrapper extends StatefulWidget {
   final DragAndDropListInterface dragAndDropList;
@@ -94,25 +96,15 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
           ),
         );
       } else if (widget.parameters.dragOnLongPress) {
-        draggable = LongPressDraggable<DragAndDropListInterface>(
+        draggable = dtc.LongPressDraggable<DragAndDropListInterface>(
           delay: const Duration(milliseconds: 200),
-          // ignoringFeedbackPointer: false,
           data: widget.dragAndDropList,
           axis: draggableAxis(),
-          child: MouseRegion(
-            cursor: SystemMouseCursors.grab,
-            child: dragAndDropListContents
+          child: dragAndDropListContents,
+          feedback: IgnorePointer(
+            child: buildFeedbackWithoutHandle(context, dragAndDropListFeedback)
           ),
-          feedback: MouseRegion(
-            cursor: SystemMouseCursors.grabbing,
-            child: IgnorePointer(
-              child: buildFeedbackWithoutHandle(context, dragAndDropListFeedback)
-            ),
-          ),
-          childWhenDragging: MouseRegion(
-            cursor: SystemMouseCursors.grabbing,
-            child: Container()
-          ),
+          childWhenDragging: Container(),
           onDragStarted: () => _setDragging(true),
           onDragCompleted: () => _setDragging(false),
           onDraggableCanceled: (_, __) => _setDragging(false),
@@ -178,7 +170,7 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
                 children: rowOrColumnChildren,
               ),
         Positioned.fill(
-          child: DragTarget<DragAndDropListInterface>(
+          child: dtc.DragTarget<DragAndDropListInterface>(
             builder: (context, candidateData, rejectedData) {
               if (candidateData.isNotEmpty) {}
               return Container();
