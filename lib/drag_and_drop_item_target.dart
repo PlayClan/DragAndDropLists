@@ -1,7 +1,7 @@
 import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
+import 'package:drag_and_drop_lists/drag_target_custom.dart' as dtc;
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class DragAndDropItemTarget extends StatefulWidget {
   final Widget child;
@@ -48,7 +48,7 @@ class _DragAndDropItemTarget extends State<DragAndDropItemTarget>
           ],
         ),
         Positioned.fill(
-          child: DragTarget<DragAndDropItem>(
+          child: dtc.DragTarget<DragAndDropItem>(
             builder: (context, candidateData, rejectedData) {
               if (candidateData.isNotEmpty) {}
               return Container();

@@ -5,6 +5,7 @@ import 'package:drag_and_drop_lists/drag_and_drop_item.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_item_target.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_item_wrapper.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
+import 'package:drag_and_drop_lists/drag_target_custom.dart' as dtc;
 import 'package:drag_and_drop_lists/programmatic_expansion_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -146,7 +147,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
           return Stack(children: <Widget>[
             child!,
             Positioned.fill(
-              child: DragTarget<DragAndDropItem>(
+              child: dtc.DragTarget<DragAndDropItem>(
                 builder: (context, candidateData, rejectedData) {
                   if (candidateData.isNotEmpty) {}
                   return Container();
@@ -171,7 +172,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
             child!,
             Container(
               height: 55,
-              child: DragTarget<DragAndDropItem>(
+              child: dtc.DragTarget<DragAndDropItem>(
                 builder: (context, candidateData, rejectedData) {
                   if (candidateData.isNotEmpty) {}
                   return Container();

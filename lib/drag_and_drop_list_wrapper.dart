@@ -5,7 +5,6 @@ import 'package:drag_and_drop_lists/drag_target_custom.dart' as dtc;
 import 'package:drag_and_drop_lists/measure_size.dart';
 import 'package:flutter/material.dart';
 
-
 class DragAndDropListWrapper extends StatefulWidget {
   final DragAndDropListInterface dragAndDropList;
   final DragAndDropBuilderParameters parameters;
@@ -101,9 +100,7 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
           data: widget.dragAndDropList,
           axis: draggableAxis(),
           child: dragAndDropListContents,
-          feedback: IgnorePointer(
-            child: buildFeedbackWithoutHandle(context, dragAndDropListFeedback)
-          ),
+          feedback: buildFeedbackWithoutHandle(context, dragAndDropListFeedback),
           childWhenDragging: Container(),
           onDragStarted: () => _setDragging(true),
           onDragCompleted: () => _setDragging(false),

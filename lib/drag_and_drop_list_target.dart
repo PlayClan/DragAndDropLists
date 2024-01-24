@@ -1,7 +1,7 @@
 import 'package:drag_and_drop_lists/drag_and_drop_builder_parameters.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
+import 'package:drag_and_drop_lists/drag_target_custom.dart' as dtc;
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 typedef void OnDropOnLastTarget(
   DragAndDropListInterface newOrReordered,
@@ -75,7 +75,7 @@ class _DragAndDropListTarget extends State<DragAndDropListTarget>
       children: <Widget>[
         visibleContents,
         Positioned.fill(
-          child: DragTarget<DragAndDropListInterface>(
+          child: dtc.DragTarget<DragAndDropListInterface>(
             builder: (context, candidateData, rejectedData) {
               if (candidateData.isNotEmpty) {}
               return Container();
