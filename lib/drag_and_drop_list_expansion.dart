@@ -171,7 +171,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
           return Stack(children: <Widget>[
             child!,
             Container(
-              height: 55,
+              height: 45,
               child: dtc.DragTarget<DragAndDropItem>(
                 builder: (context, candidateData, rejectedData) {
                   if (candidateData.isNotEmpty) {}
