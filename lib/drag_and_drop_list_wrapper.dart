@@ -108,7 +108,7 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
           onDragEnd: (_) => _setDragging(false),
         );
       } else {
-        draggable = Draggable<DragAndDropListInterface>(
+        draggable = dtc.Draggable<DragAndDropListInterface>(
           data: widget.dragAndDropList,
           axis: draggableAxis(),
           child: dragAndDropListContents,

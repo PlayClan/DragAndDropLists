@@ -63,7 +63,7 @@ class _DragAndDropItemWrapper extends State<DragAndDropItemWrapper>
               : 0,
           child: MouseRegion(
             cursor: SystemMouseCursors.grab,
-            child: Draggable<DragAndDropItem>(
+            child: dtc.Draggable<DragAndDropItem>(
               data: widget.child,
               axis: widget.parameters!.axis == Axis.vertical &&
                       widget.parameters!.constrainDraggingAxis
@@ -148,7 +148,7 @@ class _DragAndDropItemWrapper extends State<DragAndDropItemWrapper>
       } else {
         draggable = MeasureSize(
           onSizeChange: _setContainerSize,
-          child: Draggable<DragAndDropItem>(
+          child: dtc.Draggable<DragAndDropItem>(
             data: widget.child,
             axis: widget.parameters!.axis == Axis.vertical &&
                     widget.parameters!.constrainDraggingAxis
