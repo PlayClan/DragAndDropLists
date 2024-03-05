@@ -4,7 +4,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:context_menus/context_menus.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 
@@ -259,28 +258,7 @@ class ProgrammaticExpansionTileState extends State<ProgrammaticExpansionTile>
           ListTileTheme.merge(
             iconColor: _iconColor.value,
             textColor: _headerColor.value,
-              child: ContextMenuRegion(
-                enableLongPress: false,
-                contextMenu: GenericContextMenu(
-                  // if number func > 2 or < 0 return [];
-                  buttonConfigs: widget.numberFunction > 2 || widget.numberFunction <= 0 ? [] :
-                  [
-                    if (widget.firstFunction != null && widget.titleFirstFunction != null && widget.numberFunction >= 1)
-                    ContextMenuButtonConfig(widget.titleFirstFunction!,
-                      icon: widget.iconFirstFunction,
-                      onPressed: () {
-                        widget.firstFunction!();
-                      }
-                    ),
-                    if (widget.secondFunction != null && widget.titleSecondFunction != null && widget.numberFunction > 1)
-                    ContextMenuButtonConfig(widget.titleSecondFunction!,
-                    icon: widget.iconSecondFunction,
-                      onPressed: () {
-                        widget.secondFunction!();
-                      }
-                    )
-                ]),
-                child: MouseRegion(
+              child: MouseRegion(
                   onEnter: (event) {
                     setState(() {
                       _isHover = true;
@@ -313,7 +291,6 @@ class ProgrammaticExpansionTileState extends State<ProgrammaticExpansionTile>
                     ),
                   ),
                 ),
-              ),
           ),
           ClipRect(
             child: Align(
