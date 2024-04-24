@@ -11,7 +11,7 @@ class DragAndDropItem implements DragAndDropInterface {
   /// Whether or not this item can be dragged.
   /// Set to true if it can be reordered.
   /// Set to false if it must remain fixed.
-  final bool canDrag;
+  bool canDrag;
 
   DragAndDropItem({
     required this.child,
